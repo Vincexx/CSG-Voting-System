@@ -2,6 +2,11 @@
 
 session_start();
 
+$is_show = $_SESSION['is_show'];
+
+if ($_SESSION['is_active'] != true) {
+    header("location:adminlogin.php");
+}
 
 ?>
 
@@ -16,13 +21,49 @@ session_start();
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         body {
-            background: linear-gradient(to right, lightgreen, white);
+            background: linear-gradient(to bottom, lightgreen, white);
             font-family: sans-serif;
         }
     </style>
 </head>
 
 <body>
+    <!-- Modal -->
+    <div class="modal fade" id="login_show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="login_show_result.php" method="POST">
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="btn-login-data" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
     <nav class="bg-success text-white p-1" style="border-bottom: 2px black solid;">
         <div class="row">
             <div class="col-8 offset-2">
@@ -30,11 +71,24 @@ session_start();
                     <p class="text-center">CSG Election 2020</p>
             </div>
 
-            <div class="col-1 pt-4 offset-1">
-                <input type="submit" class="btn btn-dark" value="SHOW">
+            <div class="col-1 pt-4 d-flex">
+                <form action="" method="POST">
+                    <button type="submit" class="btn btn-dark mr-3" name="btn_hide" style="height:40px;">
+                        HIDE
+                    </button>
+                </form>
+                <button type="button" class="btn btn-dark" style="height: 40px;" data-toggle="modal" data-target="#login_show">
+                    SHOW
+                </button>
             </div>
         </div>
     </nav>
+    <?php
+    if (isset($_POST['btn_hide'])) {
+        header("refresh:0.5;url=result.php");
+        $_SESSION['is_show'] = false;
+    }
+    ?>
 
 
 
@@ -54,7 +108,7 @@ session_start();
                 $qry = "SELECT * FROM tblcandidate";
                 $query_run = mysqli_query($con, $qry);
                 ?>
-                <table class="table table-bordered text-center">
+                <table class="table table-bordered table-striped text-center">
                     <tr>
                         <th colspan="5" class="text-center bg-success text-white">Result</th>
                     </tr>
@@ -84,8 +138,17 @@ session_start();
                                 $row['number_vote_4'];
 
                     ?>
-                            <td><?php echo $row['president']; ?></td>
+                            <td>
+                                <?php
+                                if ($is_show == true) {
+                                    echo $row['president'];
+                                } else {
+                                    echo "?";
+                                }
+                                ?>
+                            </td>
                             <td><?php echo $row['number_vote_pres']; ?></td>
+
 
                     <?php
 
@@ -93,8 +156,8 @@ session_start();
                     } else {
                         echo "No Record Found!";
                     }
-
                     ?>
+
                     <tr>
 
                         <th rowspan="2">Vice President : </th>
@@ -105,7 +168,15 @@ session_start();
                         foreach ($query_run as $row) {
 
                     ?>
-                            <td><?php echo $row['vpresident']; ?></td>
+                            <td>
+                                <?php
+                                if ($is_show == true) {
+                                    echo $row['vpresident'];
+                                } else {
+                                    echo "?";
+                                }
+                                ?>
+                            </td>
                             <td><?php echo $row['number_vote_vpres']; ?></td>
 
                     <?php
@@ -127,7 +198,15 @@ session_start();
                         foreach ($query_run as $row) {
 
                     ?>
-                            <td><?php echo $row['secretary']; ?></td>
+                            <td>
+                                <?php
+                                if ($is_show == true) {
+                                    echo $row['secretary'];
+                                } else {
+                                    echo "?";
+                                }
+                                ?>
+                            </td>
                             <td><?php echo $row['number_vote_sec']; ?></td>
 
                     <?php
@@ -149,7 +228,15 @@ session_start();
                         foreach ($query_run as $row) {
 
                     ?>
-                            <td><?php echo $row['treasurer']; ?></td>
+                            <td>
+                                <?php
+                                if ($is_show == true) {
+                                    echo $row['treasurer'];
+                                } else {
+                                    echo "?";
+                                }
+                                ?>
+                            </td>
                             <td><?php echo $row['number_vote_treas']; ?></td>
 
                     <?php
@@ -170,7 +257,15 @@ session_start();
                         foreach ($query_run as $row) {
 
                     ?>
-                            <td><?php echo $row['pro']; ?></td>
+                            <td>
+                                <?php
+                                if ($is_show == true) {
+                                    echo $row['pro'];
+                                } else {
+                                    echo "?";
+                                }
+                                ?>
+                            </td>
                             <td><?php echo $row['number_vote_pro']; ?></td>
 
                     <?php
@@ -191,7 +286,15 @@ session_start();
                         foreach ($query_run as $row) {
 
                     ?>
-                            <td><?php echo $row['bmanager']; ?></td>
+                            <td>
+                                <?php
+                                if ($is_show == true) {
+                                    echo $row['bmanager'];
+                                } else {
+                                    echo "?";
+                                }
+                                ?>
+                            </td>
                             <td><?php echo $row['number_vote_bm']; ?></td>
 
                     <?php
@@ -209,7 +312,15 @@ session_start();
                     <?php
                     foreach ($query_run as $row) {
                     ?>
-                        <td><?php echo $row['sen-one']; ?></td>
+                        <td>
+                            <?php
+                            if ($is_show == true) {
+                                echo $row['sen-one'];
+                            } else {
+                                echo "?";
+                            }
+                            ?>
+                        </td>
                         <td><?php echo $row['number_vote_1']; ?></td>
                     <?php
                     }
@@ -219,7 +330,15 @@ session_start();
                         <?php
                         foreach ($query_run as $row) {
                         ?>
-                            <td><?php echo $row['sen-two']; ?></td>
+                            <td>
+                                <?php
+                                if ($is_show == true) {
+                                    echo $row['sen-two'];
+                                } else {
+                                    echo "?";
+                                }
+                                ?>
+                            </td>
                             <td><?php echo $row['number_vote_2']; ?></td>
                         <?php
                         }
@@ -230,7 +349,15 @@ session_start();
                         <?php
                         foreach ($query_run as $row) {
                         ?>
-                            <td><?php echo $row['sen-three']; ?></td>
+                            <td>
+                                <?php
+                                if ($is_show == true) {
+                                    echo $row['sen-three'];
+                                } else {
+                                    echo "?";
+                                }
+                                ?>
+                            </td>
                             <td><?php echo $row['number_vote_3']; ?></td>
                         <?php
                         }
@@ -241,7 +368,15 @@ session_start();
                         <?php
                         foreach ($query_run as $row) {
                         ?>
-                            <td><?php echo $row['sen-four']; ?></td>
+                            <td>
+                                <?php
+                                if ($is_show == true) {
+                                    echo $row['sen-four'];
+                                } else {
+                                    echo "?";
+                                }
+                                ?>
+                            </td>
                             <td><?php echo $row['number_vote_4']; ?></td>
                         <?php
                         }
@@ -255,7 +390,7 @@ session_start();
             ?>
 
             <div class="col-2.4">
-                <table class="table table-bordered text-center">
+                <table class="table table-bordered table-striped text-center">
                     <tr>
                         <th class="text-white bg-success">Total Votes</th>
                         <th class="text-white bg-success">No Votes</th>
@@ -320,7 +455,7 @@ session_start();
                 </table>
             </div>
             <div class="col-3">
-                <table class="table table-bordered text-center">
+                <table class="table table-bordered table-striped  text-center">
                     <tr>
                         <th colspan="2" class="text-white bg-success">Total Number of Students</th>
 
@@ -341,6 +476,7 @@ session_start();
 
             </div>
         </div>
+        
     </div>
 
 

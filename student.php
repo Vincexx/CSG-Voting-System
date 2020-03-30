@@ -2,6 +2,10 @@
 
 session_start();
 
+if ($_SESSION['is_active'] != true) {
+    header("location:adminlogin.php");
+}
+
 $con = mysqli_connect('localhost', 'root', '');
 
 $db = mysqli_select_db($con, 'voting');

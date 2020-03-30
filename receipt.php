@@ -13,13 +13,15 @@ $sen_three = $_SESSION['sen-three'];
 $sen_four = $_SESSION['sen-four'];
 $count = $_SESSION['count'];
 
+if ($_SESSION['status'] != "Submitted") {
+
+    header("location:userlogin.php");
+}
+
 
 ?>
 
-<!-- if ($_SESSION['status'] != "Submitted") {
 
-header("location:userlogin.php");
-} -->
 
 
 <!DOCTYPE html>
@@ -45,11 +47,15 @@ header("location:userlogin.php");
             overflow: hidden;
         }
 
-        nav {
-            background: green;
-            color: white;
-            min-height: 80px;
-            border-bottom: solid yellow 2px;
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .branding img {
+            width: 100px;
+
         }
 
         input[type="submit"] {
@@ -66,10 +72,15 @@ header("location:userlogin.php");
 <body>
 
 
-    <nav class="navbar bg-success" style="border-bottom: solid 2px black;">
+    <nav class="navbar bg-success" style="border-bottom: black 2px solid">
         <div class="container">
-            <h3> CSG Voting System</h3>
-            <a href="logout.php" type="button" class="btn btn-outline-light">LOGOUT</a>
+            <div class="branding d-flex">
+                <img src="img/transpalogo.png" alt="">
+                <h2 class="text-white pt-4 pl-3">Cavite State University - Tanza Campus</h3>
+            </div>
+            <div class="logout">
+                <a href="logout.php" type="button" class="btn btn-outline-light">LOGOUT</a>
+            </div>
         </div>
     </nav>
 

@@ -1,13 +1,15 @@
 <?php
 
 session_start();
+$username = $_SESSION['surname'];
 
+
+if ($_SESSION['status'] != "Active") {
+    header("location:userlogin.php");
+}
 
 ?>
-<!-- 
-if ($_SESSION['status'] != "Active") {
-header("location:userlogin.php");
-} -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,15 +36,15 @@ header("location:userlogin.php");
             overflow: hidden;
         }
 
-        nav {
-            background: green;
-            color: white;
-            min-height: 80px;
-            border-bottom: solid yellow 2px;
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
         }
 
-        table {
-            margin: 0 auto
+        .branding img {
+            width: 100px;
+
         }
 
         .highlight {
@@ -57,10 +59,19 @@ header("location:userlogin.php");
 
     <nav class="navbar bg-success" style="border-bottom: black 2px solid">
         <div class="container">
-            <h3> CSG Voting System</h3>
-            <a href="logout.php" type="button" class="btn btn-outline-light">LOGOUT</a>
+            <div class="branding d-flex">
+                <img src="img/transpalogo.png" alt="">
+                <h2 class="text-white pt-4 pl-3">Cavite State University - Tanza Campus</h3>
+            </div>
+            <div class="logout">
+                <a href="logout.php" type="button" class="btn btn-outline-light">LOGOUT</a>
+            </div>
         </div>
     </nav>
+
+    <div class="container">
+        <p class="pt-2">Welcome, <?php echo $username; ?>!</p>
+    </div>
 
 
     <div class="containers">
@@ -75,7 +86,7 @@ header("location:userlogin.php");
         ?>
 
         <form action="submit-form.php" method="POST">
-            <p class="mt-3">Choose candidate that you want. Please vote wisely! Goodluck.</p>
+            <p>Choose candidate that you want. Please vote wisely! Goodluck.</p>
             <table class="table table-hover">
 
                 <th>President : </th>

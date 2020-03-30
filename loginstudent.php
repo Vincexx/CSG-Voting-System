@@ -27,6 +27,7 @@
             header("refresh:0.5;url=balota.php");
             $_SESSION['status']="Active";
             $_SESSION['student_no'] = $student_no;
+            $_SESSION['surname'] = $pass;
 
         } else {
             header("refresh:0.5;url=userlogin.php");

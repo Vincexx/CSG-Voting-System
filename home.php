@@ -1,7 +1,10 @@
 <?php
 
 session_start();
-// $name = $_SESSION['username'];
+
+if ($_SESSION['is_active'] != "true") {
+    header("location:adminlogin.php");
+}
 
 ?>
 
@@ -195,6 +198,7 @@ session_start();
                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#candidate-add-modal">
                     ADD CANDIDATE
                 </button>
+                <a href="result.php" class="btn btn-dark">SHOW RESULT</a>
             </div>
         </div>
 
