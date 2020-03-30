@@ -17,7 +17,6 @@ header("location:userlogin.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
     <title>Ready to Vote</title>
     </title>
 
@@ -25,10 +24,14 @@ header("location:userlogin.php");
         body {
             padding: 0;
             margin: 0;
-        }
-        .container h2 {
-            padding: 20px;
             font-family: sans-serif;
+            background: linear-gradient(to right, lightgreen, white);
+        }
+
+        .containers {
+            width: 60%;
+            margin: auto;
+            overflow: hidden;
         }
 
         nav {
@@ -38,35 +41,30 @@ header("location:userlogin.php");
             border-bottom: solid yellow 2px;
         }
 
-        input[type="submit"] {
-            margin-bottom: 50px;
-            position: absolute;
-            left: 65%;
-            width: 250px;
+        table {
+            margin: 0 auto
         }
 
         .highlight {
             color: yellow;
             font-weight: bold;
         }
-
-
     </style>
 
 </head>
 
 <body>
 
-    <nav class="navbar navbar-light">
+    <nav class="navbar bg-success" style="border-bottom: black 2px solid">
         <div class="container">
-            <h3> <span class="highlight"> CSG </span> Voting System</h3>
+            <h3> CSG Voting System</h3>
             <a href="logout.php" type="button" class="btn btn-outline-light">LOGOUT</a>
         </div>
     </nav>
 
 
-    <div class="container">
-        <h2 class="text-center">Candidates</h2>
+    <div class="containers">
+
         <?php
 
         $con = mysqli_connect('localhost', 'root', '');
@@ -75,7 +73,9 @@ header("location:userlogin.php");
         $qry = "SELECT * FROM tblcandidate";
         $query_run = mysqli_query($con, $qry);
         ?>
+
         <form action="submit-form.php" method="POST">
+            <p class="mt-3">Choose candidate that you want. Please vote wisely! Goodluck.</p>
             <table class="table table-hover">
 
                 <th>President : </th>
@@ -203,48 +203,64 @@ header("location:userlogin.php");
                 <th> Senators : </th>
 
                 <?php
-                if ($query_run) {
-
-                    foreach ($query_run as $row) {
+                foreach ($query_run as $row) {
                 ?>
+                    <td>
+                        <input type="checkbox" class="checkbox" name="sen-one[]" id="<?php echo $row['id']; ?>" value="<?php echo $row['sen-one']; ?>">
+                        <label><?php echo $row['sen-one']; ?></label>
+                    </td>
+                <?php
+                }
+                ?>
+
+                <tr>
+                    <td></td>
+                    <?php
+                    foreach ($query_run as $row) {
+                    ?>
                         <td>
-                            <input type="checkbox" class="checkbox" name="sen-one[]" value="<?php echo $row['sen-one']; ?>">
-                            <label><?php echo $row['sen-one']; ?></label>
-                        </td>
-                        <td>
-                            <input type="checkbox" class="checkbox" name="sen-two[]" value="<?php echo $row['sen-two']; ?>">
+                            <input type="checkbox" class="checkbox" name="sen-two[]" id="<?php echo $row['id']; ?>" value="<?php echo $row['sen-two']; ?>">
                             <label><?php echo $row['sen-two']; ?></label>
                         </td>
-                        <tr></tr>
-                        <td></td>
+                    <?php
+                    }
+                    ?>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <?php
+                    foreach ($query_run as $row) {
+                    ?>
                         <td>
-                            <input type="checkbox" class="checkbox" name="sen-three[]" value="<?php echo $row['sen-three']; ?>">
+                            <input type="checkbox" class="checkbox" name="sen-three[]" id="<?php echo $row['id']; ?>" value="<?php echo $row['sen-three']; ?>">
                             <label><?php echo $row['sen-three']; ?></label>
                         </td>
+                    <?php
+                    }
+                    ?>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <?php
+                    foreach ($query_run as $row) {
+                    ?>
                         <td>
-                            <input type="checkbox" class="checkbox" name="sen-four[]" value="<?php echo $row['sen-four']; ?>">
+                            <input type="checkbox" class="checkbox" name="sen-four[]" id="<?php echo $row['id']; ?>" value="<?php echo $row['sen-four']; ?>">
                             <label><?php echo $row['sen-four']; ?></label>
                         </td>
-                        <tr></tr>
-                        <td></td>
-
-
-
-                <?php
+                    <?php
                     }
-                } else {
-                    echo "No Record Found!";
-                }
-
-                ?>
-
+                    ?>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Submit" name="btn-submit" class="btn btn-success"></td>
+                </tr>
             </table>
-            <input type="submit" value="Submit" name="btn-submit" class="btn btn-primary">
+
         </form>
-
     </div>
-
-
 
 
 

@@ -17,23 +17,22 @@
 
     $validation = mysqli_query($con,"SELECT `validation` FROM `tbl_excel` WHERE `student_no` = '$student_no'");
     $result = mysqli_fetch_array($validation);
-    print $result['validation'];
+    // print $result['validation'];
 
     
 
     if($num > 1) {
         if($result['validation'] < 1){
             $_SESSION['surname'] = $pass;
-            $qry1 = "UPDATE `tbl_excel` SET `validation`= '$val' WHERE `student_no` = '$student_no'";
-            $query_run1 = mysqli_query($con, $qry1);
             header("refresh:0.5;url=balota.php");
-            
             $_SESSION['status']="Active";
+            $_SESSION['student_no'] = $student_no;
 
         } else {
-        echo '<script> alert("You already login!"); </script>';
-        header("refresh:0.5;url=userlogin.php");
+            header("refresh:0.5;url=userlogin.php");
+            echo '<script> alert("You already login!"); </script>';
         }
+
     } else {
        echo '<script> alert("Login Failed!"); </script>';
        header("refresh:0.5;url=userlogin.php");

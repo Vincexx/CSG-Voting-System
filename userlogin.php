@@ -5,123 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <style>
         body {
-            padding: 0;
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.5em;
+            padding: 0;
+            font-family: sans-serif;
+            background: url('img/we.jpg') no-repeat;
+            background-size: cover;
         }
-
-        .container {
-            width: 80%;
-            overflow: hidden;
-            margin: auto;
-        }
-
-        header {
-            background: green;
-            color: white;
-            min-height: 80px;
-            padding-top: 10px;
-            border-bottom: 2px solid yellow;
-        }
-
-        .highlight {
-            color: yellow;
-            font-weight: bold;
-        }
-
 
         .login-box {
-            border: 2px solid green;
             position: absolute;
             top: 20%;
-            left: 70%;
-            padding: 50px 50px 50px 50px;
+            left: 40%;
+            padding: 40px;
             border-radius: 10px;
-        }
-
-        .login-box h1 {
-            text-align: center;
-        }
-
-        .login-box input[type="text"],
-        .login-box input[type="password"] {
-            padding: 10px;
-            border-radius: 10px;
-            border: green solid 2px;
-        }
-
-        .login-box input[type="submit"] {
-            padding: 15px;
-            margin-top: 30px;
-            margin-left: 50px;
-            width: 100px;
             border: none;
-            background: green;
-            color: white;
+            height: 400px;
+            background: rgb(12, 12, 12, 0.3);
         }
 
-        .login-box input[type="submit"]:hover {
-            background: yellow;
-            font-weight: bold;
-            color: black;
+        .textbox {
+            padding: 5px;
+            border-radius: 10px;
         }
-        #showcase {
-            float: left;
-            width: 70%;
-            padding-top: 50px;
-        }
-        footer {
-            background: green;
-            padding: 10px;
-            color: white;
-            position: relative;
-            margin-top: 500px;
-        }
-        footer p {
-            text-align: center;
+
+        img {
+            width: 190px;
+            position: absolute;
+            left: 18%;
+            bottom: 85%;
+            -webkit-filter: grayscale(30%);
+            filter: grayscale(30%);
         }
     </style>
+
+
+
 </head>
 
 <body>
 
-    <header>
-        <div class="container">
-            <div class="branding">
-                <h1> <span class="highlight"> CSG </span> Voting System</h1>
-            </div>
-        </div>
-    </header>
-
     <div class="container">
-        <div class="login-box">
+        <div class="login-box text-white">
+            <img src="img/transpalogo.png">
             <form action="loginstudent.php" method="POST">
-                <h1>LOGIN</h1>
-                <p>Username :</p>
-                <input type="text" name="student_no" placeholder="Enter student number">
-                <p>Password :</p>
-                <input type="password" name="password" placeholder="Enter password"> <br>
-                <input type="submit" value="LOGIN">
+                <h4 class="text-center pt-4 mt-4 mb-3">STUDENT LOGIN</h4>
+                <h6>Username : </h6>
+                <input type="text" name="student_no" class="textbox mb-3" placeholder="Enter student number">
+                <h6>Password :</h6>
+                <input type="password" name="password" class="textbox" placeholder="Enter password"> <br>
+                <input type="submit" value="LOGIN" class="btn btn-dark mt-4" style="margin-left: 60px;">
             </form>
         </div>
     </div>
 
-    <section id="showcase">
-        <div class="container">
-            <h1>Cavite State University</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia laborum assumenda, corrupti nostrum, adipisci voluptas, eveniet harum illum rerum distinctio pariatur saepe magni amet in vero earum odit! Inventore.</p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam accusamus perferendis inventore repellat repudiandae, vero quasi? Quam exercitationem provident nemo, veniam dicta maxime iure corporis, perspiciatis quos minima ad enim.
-            <h3>Vote Wisely!</h3>
-        </div>
-    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <footer>
-        <p>CSG Voting System, Copyright &copy; 2020</p>
-    </footer>
 </body>
 
 </html>

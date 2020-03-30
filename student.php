@@ -19,13 +19,21 @@ if (isset($_POST['submit'])) {
                 $qry = "INSERT INTO `tbl_excel`(`student_no`, `surname`, `firstname`) VALUES ('$item1', '$item2', '$item3')";
                 $query_run = mysqli_query($con, $qry);
                 ini_set('memory_limit', '-1');
+
             }
             fclose($handle);
-            print "Import Done";
         } else {
             print "Data not Found!";
         }
+
     }
+    $qry = "SELECT * FROM tbl_excel";
+    $query_run = mysqli_query($con, $qry);
+    $total_student = mysqli_num_rows($query_run);
+
+    $qry1 = "UPDATE `tbl_no_vote` SET `not_yet_vote`= '$total_student' WHERE `id` = '1'";
+    $query_run1 = mysqli_query($con, $qry1);
+    echo '<script> alert("Data Saved"); </script>';
 }
 
 ?>
@@ -77,6 +85,11 @@ if (isset($_POST['submit'])) {
 
         $qry = "SELECT * FROM tbl_excel";
         $query_run = mysqli_query($con, $qry);
+        $num = mysqli_num_rows($query_run);
+
+        $_SESSION['student'] = $num;
+
+
         ?>
         <table class="table table-bordered table-striped text-center">
             <thead>
@@ -114,7 +127,7 @@ if (isset($_POST['submit'])) {
     <div class="row justify-content-center">
         <div class="col-auto">
             <table class="table table-responsive">
-                ....table stuff....
+                Empty Table
             </table>
         </div>
     </div>

@@ -11,7 +11,7 @@ $sen_one = $_SESSION['sen-one'];
 $sen_two = $_SESSION['sen-two'];
 $sen_three = $_SESSION['sen-three'];
 $sen_four = $_SESSION['sen-four'];
-
+$count = $_SESSION['count'];
 
 
 ?>
@@ -31,66 +31,224 @@ header("location:userlogin.php");
     <title>Receipt</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+            background: linear-gradient(to right, lightgreen, white);
+        }
+
+        .containers {
+            width: 30%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        nav {
+            background: green;
+            color: white;
+            min-height: 80px;
+            border-bottom: solid yellow 2px;
+        }
+
+        input[type="submit"] {
+            margin-bottom: 50px;
+            position: absolute;
+            left: 45%;
+            width: 20%;
+            margin-top: 20px;
+        }
+    </style>
+
 </head>
 
 <body>
 
 
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand">CSG Voting System</a>
-        <form class="form-inline">
-            <a href="userlogin.php" type="button" class="btn btn-outline-dark">STUDENT LOGIN</a>
-        </form>
+    <nav class="navbar bg-success" style="border-bottom: solid 2px black;">
+        <div class="container">
+            <h3> CSG Voting System</h3>
+            <a href="logout.php" type="button" class="btn btn-outline-light">LOGOUT</a>
+        </div>
     </nav>
 
 
-    <h2 class="text-center">List of Candidates you've Voted</h2>
+    <h2 class="text-center mt-3 mb-3">Voted Officers</h2>
+    <p class="text-center">Thank you for your cooperation.</p>
 
-    <div class="container">
-        <table class="table table-hover">
+    <div class="containers">
+        <table class="table">
             <thead>
                 <tr>
                     <th>President : </th>
-                    <td><?php echo $president; ?></td>
-
+                    <td>
+                        <?php
+                        if (!empty($president)) {
+                            echo $president;
+                        } else {
+                            echo "N/A";
+                        }
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <th>Vice President : </th>
-                    <td><?php echo $vpresident; ?></td>
+                    <td>
+                        <?php
+                        if (!empty($vpresident)) {
+                            echo $vpresident;
+                        } else {
+                            echo "N/A";
+                        }
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <th>Secretary : </th>
-                    <td><?php echo $secretary; ?></td>
+                    <td>
+                        <?php
+                        if (!empty($secretary)) {
+                            echo $secretary;
+                        } else {
+                            echo "N/A";
+                        }
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <th>Treasurer : </th>
-                    <td><?php echo $treasurer; ?></td>
+                    <td>
+                        <?php
+                        if (!empty($treasurer)) {
+                            echo $treasurer;
+                        } else {
+                            echo "N/A";
+                        }
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <th>P.R.O : </th>
-                    <td><?php echo $pro; ?></td>
+                    <td>
+                        <?php
+                        if (!empty($pro)) {
+                            echo $pro;
+                        } else {
+                            echo "N/A";
+                        }
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <th>Business Manager : </th>
-                    <td><?php echo $bmanager; ?></td>
+                    <td>
+                        <?php
+                        if (!empty($bmanager)) {
+                            echo $bmanager;
+                        } else {
+                            echo "N/A";
+                        }
+                        ?>
+                    </td>
                 </tr>
-                <tr>
-                    <th>Senators : </th>
-                    <td><?php echo $sen_one; ?></td>
 
                 <tr>
-                    <td></td>
-                    <td><?php echo $sen_two; ?></td>
-                </tr>
+                    <th>Senators : </th>
+                    <?php
+                    $counts = 0;
+                    for ($x = 0; $x <= $count; $x++) {
+                    ?>
+                        <?php
+                        if (!empty($sen_one[$x])) {
+                            $counts++;
+                            if ($counts != 1) {
+                        ?>
                 <tr>
                     <td></td>
-                    <td><?php echo $sen_three; ?></td>
+                    <td><?php print $sen_one[$x]; ?></td>
                 </tr>
+
+            <?php
+                            } else {
+            ?>
+                <td><?php print $sen_one[$x]; ?></td>
+        <?php
+                            }
+                        }
+        ?>
+
+        <?php
+                        if (!empty($sen_two[$x])) {
+                            $counts++;
+                            if ($counts != 1) {
+        ?>
                 <tr>
                     <td></td>
-                    <td><?php echo $sen_four; ?></td>
+                    <td><?php print $sen_two[$x]; ?></td>
                 </tr>
+
+            <?php
+                            } else {
+            ?>
+                <td><?php print $sen_two[$x]; ?></td>
+        <?php
+                            }
+                        }
+
+        ?>
+
+        <?php
+                        if (!empty($sen_three[$x])) {
+                            $counts++;
+                            if ($counts != 1) {
+        ?>
+                <tr>
+                    <td></td>
+                    <td><?php print $sen_three[$x]; ?></td>
                 </tr>
+
+            <?php
+                            } else {
+            ?>
+                <td><?php print $sen_three[$x]; ?></td>
+        <?php
+                            }
+                        }
+
+        ?>
+
+        <?php
+                        if (!empty($sen_four[$x])) {
+                            $counts++;
+                            if ($counts != 1) {
+        ?>
+                <tr>
+                    <td></td>
+                    <td><?php print $sen_four[$x]; ?></td>
+                </tr>
+
+            <?php
+                            } else {
+            ?>
+                <td><?php print $sen_four[$x]; ?></td>
+        <?php
+                            }
+                        }
+
+        ?>
+
+
+
+    <?php
+                    }
+
+    ?>
+    </tr>
+
+
+
+
             </thead>
         </table>
     </div>

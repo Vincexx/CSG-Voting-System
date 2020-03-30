@@ -21,11 +21,12 @@ $db = mysqli_select_db($con, 'voting');
                 
                     $qry = "INSERT INTO `tbl_excel`(`student_no`, `name`, `course`, `year`, `section`, `subject`) VALUES ('$item1', '$item2', '$item3', '$item4', '$item5', '$item6')";
                     $query_run = mysqli_query($con,$qry);
-                    print $query_run;
                 }       
-                fclose($handle);
-                print "Import Done";
+                
+                
 
+                fclose($handle);
+               
             }
             else {
                 print "Data not Found!";
