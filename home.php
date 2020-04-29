@@ -172,6 +172,36 @@ if ($_SESSION['is_active'] != "true") {
         </div>
     </div>
 
+        <!-- DELETE Modal //------------------------------------------------ -->
+
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Candidate Data</h5>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="delete.php" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="delete_id" id="delete_id">
+
+                        <h4>Do you really want to delete this Data?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+                        <button type="submit" name="btn-delete-data" class="btn btn-primary">YES</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
 
     <nav class="navbar navbar-light" style="background-color: #e3f2fd; justify-content-between">
         <a class="navbar-brand">CSG VOTING SYSTEM</a>
@@ -207,8 +237,7 @@ if ($_SESSION['is_active'] != "true") {
 
                 <?php
 
-                $con = mysqli_connect('localhost', 'root', '');
-                mysqli_select_db($con, 'voting');
+                include 'config.php';
 
                 $qry = "SELECT * FROM tblcandidate";
                 $query_run = mysqli_query($con, $qry);

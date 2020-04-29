@@ -5,7 +5,7 @@ $username = $_SESSION['surname'];
 
 
 if ($_SESSION['status'] != "Active") {
-    header("location:userlogin.php");
+    header("location:index.php");
 }
 
 ?>
@@ -78,8 +78,7 @@ if ($_SESSION['status'] != "Active") {
 
         <?php
 
-        $con = mysqli_connect('localhost', 'root', '');
-        mysqli_select_db($con, 'voting');
+        include 'config.php';
 
         $qry = "SELECT * FROM tblcandidate";
         $query_run = mysqli_query($con, $qry);

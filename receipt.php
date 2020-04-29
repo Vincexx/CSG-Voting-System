@@ -15,7 +15,7 @@ $count = $_SESSION['count'];
 
 if ($_SESSION['status'] != "Submitted") {
 
-    header("location:userlogin.php");
+    header("location:index.php");
 }
 
 

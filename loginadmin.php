@@ -2,9 +2,8 @@
 
     session_start();
 
-    $con = mysqli_connect('localhost', 'root', '');
-    
-    mysqli_select_db($con, 'voting');
+    include 'config.php';
+
     $_SESSION['is_active'] = false;
     $username = $_POST['username'];
     $password = $_POST['password'];

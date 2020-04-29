@@ -2,5 +2,5 @@
     session_start();
     session_destroy();
     $_SESSION = array();
-    header("location:userlogin.php");
+    header("location:index.php");
 ?>

@@ -6,9 +6,7 @@ if ($_SESSION['is_active'] != true) {
     header("location:adminlogin.php");
 }
 
-$con = mysqli_connect('localhost', 'root', '');
-
-$db = mysqli_select_db($con, 'voting');
+include 'config.php';
 
 if (isset($_POST['submit'])) {
     if ($_FILES['file']['name']) {
@@ -20,7 +18,7 @@ if (isset($_POST['submit'])) {
                 $item2 = mysqli_real_escape_string($con, $data[1]);
                 $item3 = mysqli_real_escape_string($con, $data[2]);
 
-                $qry = "INSERT INTO `tbl_excel`(`student_no`, `surname`, `firstname`) VALUES ('$item1', '$item2', '$item3')";
+                $qry = "INSERT INTO tbl_excel(student_no, surname, firstname) VALUES ('$item1', '$item2', '$item3')";
                 $query_run = mysqli_query($con, $qry);
                 ini_set('memory_limit', '-1');
 
@@ -37,7 +35,7 @@ if (isset($_POST['submit'])) {
 
     $qry1 = "UPDATE `tbl_no_vote` SET `not_yet_vote`= '$total_student' WHERE `id` = '1'";
     $query_run1 = mysqli_query($con, $qry1);
-    echo '<script> alert("Data Saved"); </script>';
+
 }
 
 ?>

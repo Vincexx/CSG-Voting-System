@@ -2,9 +2,7 @@
 
     session_start();
 
-    $con = mysqli_connect('localhost', 'root', '');
-
-    mysqli_select_db($con, 'voting');
+    include 'config.php';
 
     $val = 1;
     $student_no = $_POST['student_no'];
@@ -30,13 +28,13 @@
             $_SESSION['surname'] = $pass;
 
         } else {
-            header("refresh:0.5;url=userlogin.php");
+            header("refresh:0.5;url=index.php");
             echo '<script> alert("You already login!"); </script>';
         }
 
     } else {
        echo '<script> alert("Login Failed!"); </script>';
-       header("refresh:0.5;url=userlogin.php");
+       header("refresh:0.5;url=index.php");
     }
 
     

@@ -98,8 +98,7 @@ if ($_SESSION['is_active'] != true) {
             <div class="col-6" style="margin-left: 60px;">
                 <?php
 
-                $con = mysqli_connect('localhost', 'root', '');
-                mysqli_select_db($con, 'voting');
+                include 'config.php';
 
                 $qry = "SELECT * FROM tbl_excel";
                 $query_run = mysqli_query($con, $qry);

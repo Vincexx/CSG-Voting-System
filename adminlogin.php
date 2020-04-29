@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Login</title>
+    <title>Admin Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <style>
@@ -85,12 +85,15 @@
 
 
     <div class="container">
+        <!-- <div class="m-3 pull-right">
+            <a href="" class="btn btn-outline-info">STUDENT</a>
+        </div> -->
         <div class="login-box text-white">
             <img src="img/transpalogo.png">
             <form action="loginadmin.php" method="POST">
                 <h4 class="text-center pt-4 mt-4 mb-3">ADMIN LOGIN</h4>
                 <h6>Username : </h6>
-                <input type="text" class="textbox mb-3" name="username" placeholder="Enter student number">
+                <input type="text" class="textbox mb-3" name="username" placeholder="Enter username">
                 <h6>Password :</h6>
                 <input type="password" class="textbox" name="password" placeholder="Enter password"> <br>
                 <input type="submit" value="LOGIN" class="btn btn-dark mt-4" style="margin-left: 60px;"> <br>
