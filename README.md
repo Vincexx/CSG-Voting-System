@@ -12,7 +12,7 @@ password : admin <br>
 
 <p> Now you can add,update,delete officers that will run for candidacy.</p> <br>
 
-<h3>USER LOGIN</h3> <br>
+<h3>USER LOGIN</h3> 
     <i>localhost/VotingSystem/index.php</i> <br>
 
 You have to import an excel file on admin dashboard, that consist of a student_no and surname, then 
